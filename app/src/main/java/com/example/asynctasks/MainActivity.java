@@ -5,6 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -43,9 +44,22 @@ public static final String TAG = "ASYNC";
         btnChangeColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                waitNSec(10);
-                clBackground.setBackgroundColor(Color.RED);
-                Log.d(TAG, "onClick: "+System.currentTimeMillis());
+//                waitNSec(10);
+//                clBackground.setBackgroundColor(Color.RED);
+//                Log.d(TAG, "onClick: "+System.currentTimeMillis());
+
+                // In the output when handler is used,
+                //We can use the list even after pressing the button
+                Handler h = new Handler();
+                // Runnable is an interface that has a function called run.
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d(TAG, "run: We have waited 5 seconds");
+                        clBackground.setBackgroundColor(Color.RED);
+                    }
+                };
+                h.postDelayed(r,5000); // Handler is calculated on a separate thread
             }
         });
     }
