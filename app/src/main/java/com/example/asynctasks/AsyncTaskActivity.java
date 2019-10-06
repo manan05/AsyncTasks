@@ -1,6 +1,5 @@
 package com.example.asynctasks;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
